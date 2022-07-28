@@ -1,4 +1,5 @@
 import React from "react";
+import {capitalizeFirstLetter } from "../../utils/helpers";
 function Nav (){
     const  categories = [
         { name: 'commercial', description: 'Photos of grocery stores, food trucks, and other commercial projects' },
@@ -47,7 +48,7 @@ function Nav (){
                         categories.map((category) => (
                         <li className="mx-1" key={category.name} >
                             <span onClick={()=> handleClick()}>
-                            {(category.name)}
+                            {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
                         ))
