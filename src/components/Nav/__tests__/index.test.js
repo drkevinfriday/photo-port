@@ -9,6 +9,8 @@ const categories = [
   ]
   const mockCurrentCategory = jest.fn();
   const mockSetCurrentCategory = jest.fn();
+  const mockContactSelected = jest.fn();
+  const mockSetContactSelected = jest.fn();
 afterEach(cleanup);
 
 
@@ -20,14 +22,18 @@ describe('Nav Component', ()=>{
         render(<Nav 
             categories={categories}
             setCurrentCategory={mockCurrentCategory}
-            currentCategory={mockSetCurrentCategory}/>)       
+            currentCategory={mockSetCurrentCategory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected}/>)       
     })
     //  snapshot test
     it('matches snapshot', ()=> {
         const{ asFragment } = render(<Nav 
             categories={categories}
-            setCurrentCategory={mockCurrentCategory}
-            currentCategory={mockSetCurrentCategory}/>);
+            setCurrentCategory={mockSetCurrentCategory}
+            currentCategory={mockCurrentCategory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected} />);
         // assert value comparison
         expect(asFragment()).toMatchSnapshot();
     })
@@ -38,8 +44,10 @@ describe('emoji is visible', ()=> {
         // arrange
         const {getByLabelText} = render(<Nav 
             categories={categories}
-            setCurrentCategory={mockCurrentCategory}
-            currentCategory={mockSetCurrentCategory}/>)
+            setCurrentCategory={mockSetCurrentCategory}
+            currentCategory={mockCurrentCategory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected} />)
         expect(getByLabelText('camera')).toHaveTextContent('📸');
         // assert
     })
@@ -51,8 +59,10 @@ describe('links are visble',()=> {
     it('the links work and are visible', ()=>{
         const {getByTestId} = render(<Nav 
             categories={categories}
-            setCurrentCategory={mockCurrentCategory}
-            currentCategory={mockSetCurrentCategory}/>)
+            setCurrentCategory={mockSetCurrentCategory}
+            currentCategory={mockCurrentCategory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected} />)
 
         // arrange
         expect(getByTestId('link')).toHaveTextContent('Oh Snap')
